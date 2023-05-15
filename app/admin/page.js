@@ -1,7 +1,8 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { AllUsers, UserData } from "@/components/Blockchain";
 export default function admin() {
+  const [users, setUsers] = useState([]);
   useEffect(() => {
     const getAllUsers = async () => {
       const res = await AllUsers();
@@ -16,7 +17,9 @@ export default function admin() {
         // console.log(userData);
         console.log(address);
         const userData = await UserData({ address });
+        setUsers((prev) => [...prev, userData]);
         console.log(userData[0]);
+        console.log(users);
       }
       //console.log(address);
     };

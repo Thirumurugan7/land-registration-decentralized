@@ -33,7 +33,7 @@ const Navbar = () => {
     }
   };
   return (
-    <nav className="flex justify-between items-center py-4 px-8">
+    <nav className="flex justify-between items-baseline py-4 px-8">
       <div className="flex items-center">
         <Image
           src={Logo}
@@ -44,14 +44,17 @@ const Navbar = () => {
         />
         <h1 className="text-xl font-bold">Zk Claims</h1>
       </div>
-      <ul className="flex space-x-4">
+      <ul className="flex space-x-4 items-center">
         <li>
-          <a href="/register" className="text-gray-800 hover:text-gray-600">
+          <a href="/register" className="text-white hover:text-gray-600">
             Register
           </a>
         </li>
         <li>
-          <a href="/login" className="text-gray-800 hover:text-gray-600">
+          <a
+            href="/login"
+            className="text-gray- text-white hover:text-gray-600 items-center"
+          >
             Login
           </a>
         </li>
@@ -60,7 +63,10 @@ const Navbar = () => {
           {/* <a href="#" className="text-gray-800 hover:text-gray-600">
 
           </a> */}
-          <button onClick={connectWallet}>
+          <button
+            className="inline-block rounded bg-info px-6 pb-2 pt-2.5 text-xs border font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#54b4d3] transition duration-150 ease-in-out hover:bg-info-600 hover:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:bg-info-600 focus:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:outline-none focus:ring-0 active:bg-info-700 active:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(84,180,211,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.2),0_4px_18px_0_rgba(84,180,211,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.2),0_4px_18px_0_rgba(84,180,211,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.2),0_4px_18px_0_rgba(84,180,211,0.1)]"
+            onClick={connectWallet}
+          >
             {connected ? account : "connect"}
           </button>
         </li>
