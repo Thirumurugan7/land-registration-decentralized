@@ -46,12 +46,12 @@ const Navbar = () => {
       </div>
       <ul className="flex space-x-4">
         <li>
-          <a href="#" className="text-gray-800 hover:text-gray-600">
+          <a href="/register" className="text-gray-800 hover:text-gray-600">
             Register
           </a>
         </li>
         <li>
-          <a href="#" className="text-gray-800 hover:text-gray-600">
+          <a href="/login" className="text-gray-800 hover:text-gray-600">
             Login
           </a>
         </li>

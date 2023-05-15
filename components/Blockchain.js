@@ -1,5 +1,4 @@
 import { ethers } from "ethers";
-
 import Web3 from "web3";
 import abi from "./abi.json";
 const isBrowser = () => typeof window !== "undefined"; //The approach recommended by Next.js
@@ -11,20 +10,70 @@ if (ethereum) {
 
 const CONTRACT_ADDRESS = "0x197E6EC38DD01f54296e0AFbf8854F75e85548B5";
 
-const Register = async ({ name, email, phonenumber }) => {
+const RegisterUser = async ({ name, email, phoneNumber }) => {
+  console.log(name, email, phoneNumber);
   console.log("register started from bc");
   console.log("registering started ....");
   let provider =
     window.ethereum != null
       ? new ethers.providers.Web3Provider(window.ethereum)
       : ethers.providers.getDefaultProvider();
-  console.log(provider);
+  console.log("provider", provider);
+  console.log("provder done");
   const signer = provider.getSigner();
-  console.log(signer);
-  const Role = new ethers.Contract(CONTRACT_ADDRESS, config, signer);
-  const res = await Role.register(name, email, phonenumber);
+  console.log("sigener", signer);
+  console.log("contract", CONTRACT_ADDRESS);
+  console.log(abi);
+  const Role = new ethers.Contract(CONTRACT_ADDRESS, abi, signer);
+  console.log("ROLE", Role);
+  const res = await Role.register(name, email, phoneNumber);
   console.log(res);
   console.log("registered");
-  window.alert("You are registered");
-  return true;
+  window.alert(
+    "Wait till admin approves you, once approved copy and use the below hash "
+  );
+  return res;
 };
+
+const AllUsers = async () => {
+  let provider =
+    window.ethereum != null
+      ? new ethers.providers.Web3Provider(window.ethereum)
+      : ethers.providers.getDefaultProvider();
+  console.log("provider", provider);
+  console.log("provder done");
+  const signer = provider.getSigner();
+  console.log("sigener", signer);
+  console.log("contract", CONTRACT_ADDRESS);
+  console.log(abi);
+  const Role = new ethers.Contract(CONTRACT_ADDRESS, abi, signer);
+  console.log("ROLE", Role);
+  const res = await Role.getAllUsers();
+  console.log(res);
+  return res;
+};
+
+const UserData = async ({ address }) => {
+  console.log(address);
+
+  console.log("registering started ....");
+  let provider =
+    window.ethereum != null
+      ? new ethers.providers.Web3Provider(window.ethereum)
+      : ethers.providers.getDefaultProvider();
+  console.log("provider", provider);
+  console.log("provder done");
+  const signer = provider.getSigner();
+  console.log("sigener", signer);
+  console.log("contract", CONTRACT_ADDRESS);
+  console.log(abi);
+  const Role = new ethers.Contract(CONTRACT_ADDRESS, abi, signer);
+  console.log("ROLE", Role);
+  const res = await Role.getUser(address);
+  console.log(res);
+  console.log("got the data");
+
+  return res;
+};
+
+export { RegisterUser, AllUsers, UserData };

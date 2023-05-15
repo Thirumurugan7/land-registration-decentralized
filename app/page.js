@@ -3,7 +3,7 @@ import Link from "next/link";
 import homelogo from "../Assets/homellogo1.png";
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="flex h-screen flex-col items-center justify-between p-24">
       <div className="w-full h-[500px] flex flex-col items-center justify-evenly">
         <div>
           <Image src={homelogo} width={200} height={200} alt="homelogo" />
