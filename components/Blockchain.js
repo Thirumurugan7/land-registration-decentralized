@@ -150,5 +150,65 @@ const LogoutUser = async () => {
 
   return res;
 };
+const UploadDocument = async ({ urlData }) => {
+  console.log(urlData);
+  console.log("upload started ... in backend");
 
-export { RegisterUser, AllUsers, UserData, ApproveUser, LoginUser, LogoutUser };
+  console.log("registering started ....");
+  let provider =
+    window.ethereum != null
+      ? new ethers.providers.Web3Provider(window.ethereum)
+      : ethers.providers.getDefaultProvider();
+  console.log("provider", provider);
+  console.log("provder done");
+  const signer = provider.getSigner();
+  console.log("sigener", signer);
+  console.log("contract", CONTRACT_ADDRESS);
+  console.log(abi);
+  const Role = new ethers.Contract(CONTRACT_ADDRESS, abi, signer);
+  console.log("ROLE", Role);
+  const res = await Role.uploadDocument(urlData);
+  console.log(res);
+  if (!res) {
+    console.log("failed");
+  }
+  // console.log("got the data");
+
+  return true;
+};
+const ApproveDocument = async ({ address }) => {
+  console.log(address);
+  console.log("upload started ... in backend");
+
+  console.log("registering started ....");
+  let provider =
+    window.ethereum != null
+      ? new ethers.providers.Web3Provider(window.ethereum)
+      : ethers.providers.getDefaultProvider();
+  console.log("provider", provider);
+  console.log("provder done");
+  const signer = provider.getSigner();
+  console.log("sigener", signer);
+  console.log("contract", CONTRACT_ADDRESS);
+  console.log(abi);
+  const Role = new ethers.Contract(CONTRACT_ADDRESS, abi, signer);
+  console.log("ROLE", Role);
+  const res = await Role.approveDocument(address);
+  console.log(res);
+  if (!res) {
+    console.log("failed");
+  }
+  // console.log("got the data");
+
+  return res;
+};
+
+export {
+  RegisterUser,
+  AllUsers,
+  UserData,
+  ApproveUser,
+  LoginUser,
+  LogoutUser,
+  UploadDocument,
+};
