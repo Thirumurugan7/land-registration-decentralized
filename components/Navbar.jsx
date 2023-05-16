@@ -3,7 +3,9 @@ import React, { useState } from "react";
 import Logo from "../Assets/navlogo1.png";
 import Image from "next/image";
 import { LoginUser, LogoutUser } from "./Blockchain";
+import { useRouter } from "next/navigation";
 const Navbar = () => {
+  const router = useRouter();
   const { ethereum } = typeof window !== "undefined" ? window : {};
   const [account, setAccount] = useState("");
   const [error, setError] = useState("");
@@ -44,10 +46,14 @@ const Navbar = () => {
     console.log("login started at frontend");
     const res = await LogoutUser();
     console.log(res.hash);
+    router.push("/upload_document");
   };
   return (
     <nav className="flex justify-between items-baseline py-4 px-8">
-      <div className="flex items-center">
+      <div
+        className="flex items-center cursor-pointer"
+        onClick={() => router.push("/")}
+      >
         <Image
           src={Logo}
           alt="Logo"

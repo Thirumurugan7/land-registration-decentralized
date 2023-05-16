@@ -3,7 +3,10 @@ import { useState } from "react";
 import { create as ipfsHttpClient } from "ipfs-http-client";
 import { useStorageUpload } from "@thirdweb-dev/react";
 import { UploadDocument } from "./Blockchain";
+import { useRouter } from "next/navigation";
 const PdfUploadComponent = () => {
+  const router = useRouter();
+
   // const [selectedPdf, setSelectedPdf] = useState(null);
 
   // const handleFileChange = (event) => {
@@ -51,6 +54,7 @@ const PdfUploadComponent = () => {
 
     if (res) {
       alert("Document uploaded successfully");
+      router.push("/user_dashboard");
     } else {
       alert("something went wrong");
     }
@@ -100,6 +104,7 @@ const PdfUploadComponent = () => {
       <div>
         <input
           type="file"
+          accept="application/pdf"
           onChange={(e) => {
             if (e.target.files) {
               setFile(e.target.files[0]);

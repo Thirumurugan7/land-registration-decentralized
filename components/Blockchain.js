@@ -8,7 +8,7 @@ if (ethereum) {
   isBrowser().web3 = new Web3(isBrowser().web3.currentProvider);
 }
 
-const CONTRACT_ADDRESS = "0x197E6EC38DD01f54296e0AFbf8854F75e85548B5";
+const CONTRACT_ADDRESS = "0x49D6C3c7D23ceF1406f6Da97bFCEB462a93540F6";
 
 const RegisterUser = async ({ name, email, phoneNumber }) => {
   console.log(name, email, phoneNumber);
@@ -211,4 +211,5 @@ export {
   LoginUser,
   LogoutUser,
   UploadDocument,
+  ApproveDocument,
 };

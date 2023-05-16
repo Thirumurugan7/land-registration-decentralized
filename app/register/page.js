@@ -1,7 +1,10 @@
 "use client";
 import React, { useState } from "react";
 import { RegisterUser } from "@/components/Blockchain";
+import { useRouter } from "next/navigation";
 export default function Register() {
+  const router = useRouter();
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -12,6 +15,7 @@ export default function Register() {
     console.log(name, email, phoneNumber);
     const res = await RegisterUser({ name, email, phoneNumber });
     console.log(res, res.hash);
+    router.push("/");
   };
   return (
     <div className="min-h-screen flex items-center justify-center ">
