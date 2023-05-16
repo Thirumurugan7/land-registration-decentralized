@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { create as ipfsHttpClient } from "ipfs-http-client";
+
 import { useStorageUpload } from "@thirdweb-dev/react";
 import { UploadDocument } from "./Blockchain";
 import { useRouter } from "next/navigation";
