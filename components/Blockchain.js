@@ -40,21 +40,44 @@ const AllUsers = async () => {
     window.ethereum != null
       ? new ethers.providers.Web3Provider(window.ethereum)
       : ethers.providers.getDefaultProvider();
-  console.log("provider", provider);
-  console.log("provder done");
+  // console.log("provider", provider);
+  // console.log("provder done");
   const signer = provider.getSigner();
-  console.log("sigener", signer);
-  console.log("contract", CONTRACT_ADDRESS);
-  console.log(abi);
+  // console.log("sigener", signer);
+  // console.log("contract", CONTRACT_ADDRESS);
+  // console.log(abi);
   const Role = new ethers.Contract(CONTRACT_ADDRESS, abi, signer);
-  console.log("ROLE", Role);
+  //console.log("ROLE", Role);
   const res = await Role.getAllUsers();
-  console.log(res);
+  //console.log(res);
   return res;
 };
 
 const UserData = async ({ address }) => {
-  console.log(address);
+  // console.log(address);
+
+  // console.log("registering started ....");
+  let provider =
+    window.ethereum != null
+      ? new ethers.providers.Web3Provider(window.ethereum)
+      : ethers.providers.getDefaultProvider();
+  // console.log("provider", provider);
+  // console.log("provder done");
+  const signer = provider.getSigner();
+  // console.log("sigener", signer);
+  // console.log("contract", CONTRACT_ADDRESS);
+  // console.log(abi);
+  const Role = new ethers.Contract(CONTRACT_ADDRESS, abi, signer);
+  //console.log("ROLE", Role);
+  const res = await Role.getUser(address);
+  // console.log(res);
+  // console.log("got the data");
+
+  return res;
+};
+
+const ApproveUser = async ({ userAdd }) => {
+  console.log(userAdd);
 
   console.log("registering started ....");
   let provider =
@@ -69,11 +92,63 @@ const UserData = async ({ address }) => {
   console.log(abi);
   const Role = new ethers.Contract(CONTRACT_ADDRESS, abi, signer);
   console.log("ROLE", Role);
-  const res = await Role.getUser(address);
+  const res = await Role.approveUser(userAdd);
   console.log(res);
-  console.log("got the data");
+  // console.log("got the data");
 
   return res;
 };
 
-export { RegisterUser, AllUsers, UserData };
+const LoginUser = async () => {
+  //  console.log(userAdd);
+
+  console.log("registering started ....");
+  let provider =
+    window.ethereum != null
+      ? new ethers.providers.Web3Provider(window.ethereum)
+      : ethers.providers.getDefaultProvider();
+  console.log("provider", provider);
+  console.log("provder done");
+  const signer = provider.getSigner();
+  console.log("sigener", signer);
+  console.log("contract", CONTRACT_ADDRESS);
+  console.log(abi);
+  const Role = new ethers.Contract(CONTRACT_ADDRESS, abi, signer);
+  console.log("ROLE", Role);
+  try {
+    const res = await Role.login();
+    console.log(res);
+  } catch (error) {
+    alert("already login");
+  }
+  // console.log("got the data");
+
+  return true;
+};
+const LogoutUser = async () => {
+  //  console.log(userAdd);
+
+  console.log("registering started ....");
+  let provider =
+    window.ethereum != null
+      ? new ethers.providers.Web3Provider(window.ethereum)
+      : ethers.providers.getDefaultProvider();
+  console.log("provider", provider);
+  console.log("provder done");
+  const signer = provider.getSigner();
+  console.log("sigener", signer);
+  console.log("contract", CONTRACT_ADDRESS);
+  console.log(abi);
+  const Role = new ethers.Contract(CONTRACT_ADDRESS, abi, signer);
+  console.log("ROLE", Role);
+  const res = await Role.logout();
+  console.log(res);
+  if (!res) {
+    console.log("failed");
+  }
+  // console.log("got the data");
+
+  return res;
+};
+
+export { RegisterUser, AllUsers, UserData, ApproveUser, LoginUser, LogoutUser };

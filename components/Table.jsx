@@ -2,7 +2,7 @@ import React from "react";
 
 const Table = ({ userDataFromChain }) => {
   console.log(userDataFromChain);
-
+  const userData = userDataFromChain;
   return (
     <section className="flex justify-center items-center h-screen pb-[100px]">
       <div className="overflow-hidden ">
@@ -30,9 +30,9 @@ const Table = ({ userDataFromChain }) => {
             </tr>
           </thead>
           <tbody>
-            {userDataFromChain && alert("we have the data")}
-            {userDataFromChain &&
-              userDataFromChain.map((data) => (
+            {userData && alert("we have the data")}
+            {userData &&
+              userData.map((data) => (
                 <tr className="border-b dark:border-neutral-500">
                   {console.log(data)}
                   <td className="whitespace-nowrap px-6 py-4 font-medium">1</td>
