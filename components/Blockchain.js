@@ -148,7 +148,7 @@ const LogoutUser = async () => {
   }
   // console.log("got the data");
 
-  return res;
+  return true;
 };
 const UploadDocument = async ({ urlData }) => {
   console.log(urlData);

@@ -45,8 +45,8 @@ export default function admin() {
     }
 
     if (gotdata) {
-      alert("got it my boy");
-      alert(users);
+      // alert("got it my boy");
+      // alert(users);
       console.log(usersAddress);
     }
   }, [gotdata]);
@@ -62,7 +62,67 @@ export default function admin() {
   };
   return (
     <div>
-      {" "}
+      <nav
+        className="flex px-5 py-3 text-white border border-gray-200 rounded-lg justify-between "
+        aria-label="Breadcrumb"
+      >
+        <ol className="inline-flex items-center space-x-1 md:space-x-3">
+          <li className="inline-flex items-center">
+            <a
+              href="/admin"
+              className="inline-flex items-center text-sm font-medium text-white hover:text-blue-600 dark:text-white dark:hover:text-white"
+            >
+              Registration Approval
+            </a>
+          </li>
+          <li>
+            <div className="flex items-center">
+              <svg
+                aria-hidden="true"
+                className="w-6 h-6 text-white"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+              <a
+                href="/verifyDocument"
+                className="ml-1 text-sm font-medium text-white hover:text-blue-600 md:ml-2 dark:text-white dark:hover:text-white"
+              >
+                Document Approval
+              </a>
+            </div>
+          </li>
+          <li aria-current="page">
+            <div className="flex items-center">
+              <svg
+                aria-hidden="true"
+                className="w-6 h-6 text-white"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+              <span className="ml-1 text-sm font-medium text-white md:ml-2 dark:text-white">
+                Dashboard
+              </span>
+            </div>
+          </li>
+        </ol>
+      </nav>{" "}
+      <h1 className="relative top-4 flex justify-center font-semibold">
+        User Registration Verification
+      </h1>
       {console.log(userDataFromChain)}
       {gotdata ? (
         <section className="flex justify-center items-center h-screen pb-[100px]">
@@ -90,7 +150,7 @@ export default function admin() {
                 </tr>
               </thead>
               <tbody>
-                {alert(userDataFromChain)}
+                {/* {alert(userDataFromChain)} */}
                 {users &&
                   users.map((data, index) => (
                     <tr
@@ -124,10 +184,13 @@ export default function admin() {
                   ))}
               </tbody>
             </table>
+            {/* <p className="text-center p-7">Scroll left and right to see more</p> */}
           </div>
         </section>
       ) : (
-        <h1>Loading ....</h1>
+        <div className="flex items-center justify-center h-screen mb-5">
+          <h2 className="text-2xl text-white">Loading...</h2>
+        </div>
       )}
     </div>
   );

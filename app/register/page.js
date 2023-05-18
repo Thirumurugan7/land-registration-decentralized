@@ -17,6 +17,29 @@ export default function Register() {
     console.log(res, res.hash);
     router.push("/");
   };
+
+  const handleChange = (e) => {
+    const input = e.target.value;
+    const formattedInput = input.replace(/\D/g, ""); // Remove non-digit characters
+
+    if (formattedInput.length <= 10) {
+      setPhoneNumber(formattedInput);
+    }
+
+    if (input.length > 0 && !/^\d+$/.test(input)) {
+      alert("Please enter only numbers.");
+    }
+
+    if (formattedInput.length > 10) {
+      alert("Phone number should not exceed 10 digits.");
+    }
+  };
+  const handleChangeForName = (e) => {
+    const input = e.target.value;
+    const formattedInput = input.replace(/[^A-Za-z]/g, ""); // Remove non-alphabetic characters
+
+    setName(formattedInput);
+  };
   return (
     <div className="min-h-screen flex items-center justify-center ">
       <div className="bg-white p-8 rounded-lg shadow-lg">
@@ -31,7 +54,8 @@ export default function Register() {
               id="name"
               name="name"
               value={name}
-              onChange={(e) => setName(e.target.value)}
+              // onChange={(e) => setName(e.target.value)}
+              onChange={handleChangeForName}
               className="w-full  rounded-md px-4 py-2 border text-black border-blue-800 focus:outline-none focus:ring focus:border-blue-500"
               placeholder="Enter your name"
               required
@@ -61,7 +85,9 @@ export default function Register() {
               id="phoneNumber"
               name="phoneNumber"
               value={phoneNumber}
-              onChange={(e) => setPhoneNumber(e.target.value)}
+              maxLength="10"
+              // onChange={(e) => setPhoneNumber(e.target.value)}
+              onChange={handleChange}
               className="w-full  rounded-md px-4 py-2 border text-black border-blue-800 focus:outline-none focus:ring focus:border-blue-500"
               placeholder="Enter your phone number"
               required
